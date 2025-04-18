@@ -8,14 +8,21 @@ int main() {
     int CasasTorre = 0;
     int CasasBispo = 0;
     int CasasRainha  = 0;
+    int CasasCavaloVertical  = 0;
+    int CasasCavaloHorizontal  = 0;
 
     int PosicaoTorre = 1;
     int PosicaoBispo = 1;
     int PosicaoRainha  = 1;
+    int PosicaoCavaloVertical  = 1;
+    int PosicaoCavaloHorizontal  = 1;
+
 
     int DirecaoTorre = 0;
     int DirecaoBispo = 0;
     int DirecaoRainha  = 0;
+    int DirecaoCavaloVertical  = 0;
+    int DirecaoCavaloHorizontal  = 0;
 
     printf("********Xadrez********\n");
     //#region Torre
@@ -143,6 +150,73 @@ int main() {
             break;
         }
     } while (PosicaoRainha <= CasasRainha);
+    //#endregion
+
+
+    //#region Cavalo
+    do
+    {
+  
+        printf("Movimento Cavalo: Vertical (1 - Baixo   2 - Cima): ");
+        scanf("%d",&DirecaoCavaloVertical);
+    } while ((DirecaoCavaloVertical != 1) && (DirecaoCavaloVertical != 2));
+
+    do
+    {
+  
+        printf("Movimento Cavalo: Horizontal (1 - Esquerda   2 - Direita): ");
+        scanf("%d",&DirecaoCavaloHorizontal);
+    } while ((DirecaoCavaloHorizontal != 1) && (DirecaoCavaloHorizontal != 2));
+
+    do
+    {
+        printf("Movimento Cavalo: Vertical Casas (De 1 a 8): ");
+        scanf("%d",&CasasCavaloVertical);
+    } while (!((CasasCavaloVertical >=1 ) && (CasasCavaloVertical <= 8)));
+
+    do
+    {
+        printf("Movimento Cavalo: Horizontal Casas (De 1 a 8): ");
+        scanf("%d",&CasasCavaloHorizontal);
+    } while (!((CasasCavaloHorizontal >=1 ) && (CasasCavaloHorizontal <= 8)));
+
+    
+
+    while (PosicaoCavaloVertical <= CasasCavaloVertical)
+    {
+        for (int PosicaoCavaloHorizontal = 1; PosicaoCavaloHorizontal <= CasasCavaloHorizontal; PosicaoCavaloHorizontal++)
+        {
+            switch (DirecaoCavaloHorizontal)
+            {
+            case 1:
+                printf("Baixo\n");
+                break;
+            case 2:
+                printf("Cima\n");
+                break;
+            default:
+                printf("Tilt\n");
+                break;
+            }
+        }
+        switch (DirecaoCavaloVertical)
+        {
+        case 1:
+            printf("Esquerda\n");
+            PosicaoCavaloVertical++;
+            break;
+        case 2:
+            printf("Direita\n");
+            PosicaoCavaloVertical++;
+            break;
+        default:
+            printf("Tilt\n");
+            PosicaoCavaloVertical++;
+            break;
+        }
+        
+        
+    }
     //#endregion
 
     
