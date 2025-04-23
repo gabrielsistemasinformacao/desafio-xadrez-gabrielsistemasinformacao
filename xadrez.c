@@ -4,6 +4,127 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
+void MoveTorre(int Casas, int DirecaoTorre)
+{
+    if (Casas > 0)
+    {
+        switch (DirecaoTorre)
+        {
+        case 1:
+            printf("Esquerda\n");
+            break;
+        case 2:
+            printf("Direita\n");
+            break;
+        
+        default:
+            printf("Tilt\n");
+            break;
+        }
+        MoveTorre(Casas - 1,DirecaoTorre);
+    }
+    
+
+}
+
+void MoveBispo(int Casas, int DirecaoBispo)
+{
+    if (Casas > 0)
+    {
+        switch (DirecaoBispo)
+        {
+            case 11:
+                printf("Baixo Esquerda\n");
+                
+                break;
+            case 12:
+                printf("Baixo Direita\n");
+                
+                break;
+            case 21:
+                printf("Cima Direita\n");
+                
+                break;
+            case 22:
+                printf("Cima Direita\n");
+                
+                break;
+            
+            default:
+                printf("Tilt\n");
+                
+                break;
+        }
+        MoveBispo(Casas - 1, DirecaoBispo);
+    }
+    
+
+}
+
+void MoveRainha(int Casas, int DirecaoRainha)
+{
+    if (Casas > 0)
+    {
+        switch (DirecaoRainha)
+        {
+        case 1:
+            printf("Esquerda\n");
+            break;
+        case 2:
+            printf("Direita\n");
+            break;
+        case 3:
+            printf("Baixo\n");
+            break;
+        case 4:
+            printf("Cima\n");
+            break;
+        
+        default:
+            printf("Tilt\n");
+            break;
+        }       
+        MoveRainha(Casas - 1, DirecaoRainha);
+    }
+}
+
+void MoveCavalo(int CasasVertical, int CasasHorizontal, int DirecaoVertical, int DirecaoHorizontal)
+{
+    if (CasasVertical > 0)
+    {
+        if (CasasHorizontal > 0)
+        {
+            switch (DirecaoHorizontal)
+            {
+                case 1:
+                    printf("Baixo\n");
+                    break;
+                case 2:
+                    printf("Cima\n");
+                    break;
+                default:
+                    printf("Tilt\n");
+                    break;
+            }
+            MoveCavalo(CasasVertical, CasasHorizontal - 1, DirecaoVertical, DirecaoHorizontal);
+        }
+        switch (DirecaoVertical)
+        {
+            case 1:
+                printf("Esquerda\n");
+                break;
+            case 2:
+                printf("Direita\n");
+                break;
+            default:
+                printf("Tilt\n");
+                break;
+        }
+        MoveCavalo(CasasVertical - 1, CasasHorizontal, DirecaoVertical, DirecaoHorizontal);
+
+    }
+}
+
 int main() {
     int CasasTorre = 0;
     int CasasBispo = 0;
@@ -40,26 +161,7 @@ int main() {
         scanf("%d",&CasasTorre);
     } while (!((CasasTorre >=1 ) && (CasasTorre <= 8)));
 
-    while (PosicaoTorre <= CasasTorre)
-    {
-        switch (DirecaoTorre)
-        {
-        case 1:
-            printf("Esquerda\n");
-            PosicaoTorre++;
-            break;
-        case 2:
-            printf("Direita\n");
-            PosicaoTorre++;
-            break;
-        
-        default:
-            printf("Tilt\n");
-            PosicaoTorre++;
-            break;
-        }
-
-    }
+    MoveTorre(CasasTorre, DirecaoTorre);
     //#endregion
     //#region Bispo
 
@@ -78,36 +180,9 @@ int main() {
     } while (!((CasasBispo >=1 ) && (CasasBispo <= 8)));
 
     
-    for (int PosicaoBispo = 1; PosicaoBispo <= CasasBispo; PosicaoBispo++)
-    {
-        switch (DirecaoBispo)
-        {
-        case 11:
-            printf("Baixo Esquerda\n");
-            
-            break;
-        case 12:
-            printf("Baixo Direita\n");
-            
-            break;
-        case 21:
-            printf("Cima Direita\n");
-            
-            break;
-        case 22:
-            printf("Cima Direita\n");
-            
-            break;
-        
-        default:
-            printf("Tilt\n");
-            
-            break;
-        }
-    }
+    MoveBispo(CasasBispo, DirecaoBispo);
     
     //#endregion
-
     //#region Rainha
     do
     {
@@ -123,33 +198,7 @@ int main() {
     } while (!((CasasRainha >=1 ) && (CasasRainha <= 8)));
 
     
-    do
-    {
-        switch (DirecaoRainha)
-        {
-        case 1:
-            printf("Esquerda\n");
-            PosicaoRainha++;
-            break;
-        case 2:
-            printf("Direita\n");
-            PosicaoRainha++;
-            break;
-        case 3:
-            printf("Baixo\n");
-            PosicaoRainha++;
-            break;
-        case 4:
-            printf("Cima\n");
-            PosicaoRainha++;
-            break;
-        
-        default:
-            printf("Tilt\n");
-            PosicaoRainha++;
-            break;
-        }
-    } while (PosicaoRainha <= CasasRainha);
+    MoveRainha(CasasRainha, DirecaoRainha);
     //#endregion
 
 
